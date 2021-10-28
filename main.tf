@@ -5,6 +5,15 @@ provider "azurerm" {
     }
 }
 
+terraform {
+    backend "azurerm" {
+        resource_group_name = "tf_rg_blob"
+        storage_account_name = "tfstorageaccountapi"
+        container_name = "tfstatefile"
+        key = "terraform.tfstate" 
+    }
+}
+
 resource "azurerm_resource_group" "tf_test" {
     name = "terraformrg"
     location = "Central US"
@@ -32,5 +41,5 @@ resource "azurerm_container_group" "tfcgone_test" {
 
     }
 
-  
+
 }
